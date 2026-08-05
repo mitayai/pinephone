@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+usage() {
+    echo "usage: $(basename "$0") [on|off|toggle|status]" >&2
+    exit 1
+}
+
+get_blocked() {
+    rfkill list wifi | grep 'Soft blocked' | awk '{print $NF}'
+}
+
+print_status() {
+    if [ "$(get_blocked)" = "yes" ]; then
+        echo 'wifi: off'
+    else
+        echo 'wifi: on'
+    fi
+}
+
+CMD="${1:-toggle}"
+
+case "$CMD" in
+    on)
+        sudo rfkill unblock wifi
+        print_status
+        ;;
+    off)
+        sudo rfkill block wifi
+        print_status
+        ;;
+    toggle)
+        if [ "$(get_blocked)" = "yes" ]; then
+            sudo rfkill unblock wifi
+        else
+            sudo rfkill block wifi
+        fi
+        print_status
+        ;;
+    status)
+        print_status
+        ;;
+    -h|--help)
+        usage
+        ;;
+    *)
+        echo "unknown command: $CMD" >&2
+        usage
+        ;;
+esac

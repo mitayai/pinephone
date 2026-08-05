@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+usage() {
+    echo "usage: $(basename "$0") [on|off|toggle|status]" >&2
+    exit 1
+}
+
+get_state() {
+    sudo mmcli -m 0 | grep -E '^\s*\| *state:' | awk '{print $NF}'
+}
+
+print_status() {
+    STATE=$(get_state)
+    if [ "$STATE" = "disabled" ]; then
+        echo 'modem: off'
+    else
+        echo "modem: on ($STATE)"
+    fi
+}
+
+CMD="${1:-toggle}"
+
+case "$CMD" in
+    on)
+        sudo mmcli -m 0 --enable > /dev/null
+        print_status
+        ;;
+    off)
+        sudo mmcli -m 0 --disable > /dev/null
+        print_status
+        ;;
+    toggle)
+        if [ "$(get_state)" = "disabled" ]; then
+            sudo mmcli -m 0 --enable > /dev/null
+        else
+            sudo mmcli -m 0 --disable > /dev/null
+        fi
+        print_status
+        ;;
+    status)
+        print_status
+        ;;
+    -h|--help)
+        usage
+        ;;
+    *)
+        echo "unknown command: $CMD" >&2
+        usage
+        ;;
+esac
