@@ -45,8 +45,11 @@ compass. When LIS3MDL became hard to source, Pine64 substituted the
 Voltafield AF8133L/AF8133J on Beta Edition units specifically — same
 board position, same I2C address (`0x1c` on `i2c1`), same reset pin (PB1),
 same power rail (`reg_dldo1`), different chip. Confirmed present on this
-exact unit via `i2cdetect -y 1` (and again on `i2cdetect -y 5`, same
-physical bus surfaced twice — harmless).
+exact unit via `i2cdetect -y 1` — a device also answers at `0x1c` on
+`i2cdetect -y 5`, which we haven't chased down (could be the same
+controller exposed under two bus numbers, could be something else
+entirely at a coincidentally-matching address; hasn't caused a problem
+either way, but don't take it as confirmed).
 
 Both chips' device-tree nodes already exist upstream, sharing the same
 electrical description, gated by `status = "okay"`/`"disabled"` — see the

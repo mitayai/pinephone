@@ -45,6 +45,18 @@ wifi-toggle status
 `modem-toggle` uses ModemManager (`mmcli -m 0 --enable`/`--disable`).
 `wifi-toggle` uses `rfkill block`/`unblock wifi`.
 
+**On postmarketOS specifically:** there's a second layer involved now
+that Manjaro didn't have — `eg25-manager`, a systemd service that
+actually pulses the modem's power-on GPIO sequence (ModemManager only
+talks to the modem once it's already up; it doesn't power it on).
+`modem-toggle` still works as documented, but if the modem is ever
+missing entirely (`mmcli -L` finds nothing, not just "disabled"), that's
+`eg25-manager`'s problem, not this script's — check
+`systemctl status eg25-manager` before assuming the toggle script is
+broken. See
+[postmarketos-1.2b-fixes.md](postmarketos-1.2b-fixes.md#problem-2-fixing-the-magnetometer-silently-kills-the-cellular-modem)
+for a real case of this.
+
 ## ⚠️ If you're SSH'd in over WiFi, do not test `wifi-toggle off` that way
 
 This is not a hypothetical warning — we did this and it cut the
