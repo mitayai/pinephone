@@ -1,10 +1,16 @@
+> **Archived 2026-09-28.** Local radio-toggle scripts from when this
+> phone was more of a daily driver — not part of the current SSH/sensor
+> project (that work talks to `mmcli`/`rfkill` directly). Kept in case
+> day-to-day local use comes back into the picture. Still functionally
+> fine on postmarketOS as far as we've verified.
+
 # Radio toggle scripts
 
 Two small scripts for power management: `modem-toggle` and
-`wifi-toggle`. Both live in `../scripts/`, both follow the same
-interface, both actually query live state on every invocation rather
-than assuming — if you ask for status, you get a fresh read every time,
-not a cached guess.
+`wifi-toggle`. Both live in `scripts/` (next to this file, under
+`docs/archive/`), both follow the same interface, both actually query
+live state on every invocation rather than assuming — if you ask for
+status, you get a fresh read every time, not a cached guess.
 
 ## Installing
 
@@ -54,7 +60,7 @@ missing entirely (`mmcli -L` finds nothing, not just "disabled"), that's
 `eg25-manager`'s problem, not this script's — check
 `systemctl status eg25-manager` before assuming the toggle script is
 broken. See
-[postmarketos-1.2b-fixes.md](postmarketos-1.2b-fixes.md#problem-2-fixing-the-magnetometer-silently-kills-the-cellular-modem)
+[../postmarketos-1.2b-fixes.md](../postmarketos-1.2b-fixes.md#problem-2-fixing-the-magnetometer-silently-kills-the-cellular-modem)
 for a real case of this.
 
 ## ⚠️ If you're SSH'd in over WiFi, do not test `wifi-toggle off` that way

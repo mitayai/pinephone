@@ -28,35 +28,6 @@ fixed for this hardware revision.
    silently disabled and fixing that breaks the cellular modem in a
    non-obvious way. Both fixed here, in the order you'll actually hit
    them.
-4. **[docs/scripts.md](docs/scripts.md)** / **[scripts/](scripts/)** —
-   `modem-toggle` and `wifi-toggle`, small power-management tools for
-   day-to-day use once the phone's set up.
-
-## Quick start (scripts)
-
-These scripts run *on the phone*, so you need a shell there first —
-either a local terminal on the device, or SSH (the more usual way for
-us now; see the SSH setup notes in
-[docs/postmarketos-1.2b-fixes.md](docs/postmarketos-1.2b-fixes.md#ssh-access-notes-systemd-not-openrc)
-if you haven't got that going yet). Once you have a shell on the phone,
-get this repo onto it (`git clone`, or `scp`/`rsync` the `scripts/`
-folder over) and:
-
-```bash
-mkdir -p ~/bin
-cp scripts/*-toggle ~/bin/
-chmod +x ~/bin/*-toggle
-# add ~/bin to PATH if not already there -- see docs/scripts.md
-modem-toggle status
-wifi-toggle status
-```
-
-**Before you touch `wifi-toggle`, read the warning in
-[docs/scripts.md](docs/scripts.md).** If you're SSH'd into the phone
-over its own WiFi, disabling WiFi cuts the connection you're using to
-run the command — no remote recovery possible, only a different
-network path or physical access gets you back in. This happened to us;
-it's not a hypothetical.
 
 ## Archive
 
@@ -68,6 +39,10 @@ reference rather than deleted:
   better than ours did.
 - `manjaro-upgrade-conflicts.md` — recovering a badly-stale Manjaro ARM
   install, from before we moved off it entirely.
+- `scripts.md` / `scripts/` — `modem-toggle` and `wifi-toggle`, local
+  radio-toggle tools from when this phone was more of a daily driver.
+  Not part of the current SSH/sensor work, but still functional if
+  day-to-day local use comes back into the picture.
 
 None of these are maintained going forward; re-verify anything
 version-specific before following them.

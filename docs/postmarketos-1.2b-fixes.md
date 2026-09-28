@@ -160,8 +160,7 @@ you're setting up remote access:
   config: `/etc/ssh/sshd_config.d/99-key-only.conf` with
   `PasswordAuthentication no`, `KbdInteractiveAuthentication no`,
   `PermitRootLogin no`. Test with `sudo sshd -t` before restarting.
-- `modem-toggle` (in `../scripts/`) still works fine on this OS — it
-  only talks to ModemManager, which is unaffected by any of the above.
-  Just be aware `eg25-manager` is now a *third* layer involved in modem
-  state beyond ModemManager and the toggle script, on this OS
-  specifically — Manjaro didn't have it.
+- If you're using the archived `modem-toggle` script
+  ([archive/scripts.md](archive/scripts.md)), be aware `eg25-manager` is
+  now a *third* layer involved in modem state beyond ModemManager and
+  the toggle script, on this OS specifically — Manjaro didn't have it.
