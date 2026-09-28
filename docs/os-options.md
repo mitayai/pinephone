@@ -74,3 +74,30 @@ answer despite the steeper learning curve. **Ubuntu Touch** is worth
 watching — the OS itself is clearly healthy — but the PinePhone-specific
 port quality is the real open question before committing your daily
 driver to it.
+
+## Decision (2026-09-27)
+
+We went with **postmarketOS** (rebranded to **Nura** the same day, see
+[migrating-to-postmarketos.md](migrating-to-postmarketos.md) — genuine
+rebrand, not a hijack). What tipped it, beyond the general tradeoffs
+above:
+
+- The plan for this phone was remote SSH access and polling its sensors
+  (GPS, IMU, etc.) from another machine on the network — a meaningfully
+  bigger attack surface than a phone in your pocket, which made
+  postmarketOS's faster security-patch cadence matter more than it would
+  for a plain daily driver.
+- Broader, more actively-maintained hardware support turned out to be
+  concretely true, not just a claim: our exact board revision (Beta
+  Edition, 1.2b) has a real device-tree gap for its magnetometer, and it
+  was already tracked upstream (`pmaports#1945`) with a working fix
+  available — see [postmarketos-1.2b-fixes.md](postmarketos-1.2b-fixes.md).
+  A less-maintained project wouldn't have had that.
+- Ubuntu Touch was re-checked live (not from memory) at decision time —
+  still "under heavy development" for the non-Pro PinePhone specifically,
+  unchanged from the assessment above.
+
+Mobian remains a completely legitimate choice if you don't need the
+above and want the Ubuntu/Debian familiarity — the existing
+[migrating-to-mobian.md](migrating-to-mobian.md) is kept accurate for
+that path.

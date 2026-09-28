@@ -4,6 +4,13 @@ Verified against the official Debian wiki install page as of August
 2026 — re-check before following this if it's been a while, install
 processes for niche hardware do shift.
 
+> **We ended up choosing postmarketOS instead** — see
+> [os-options.md](os-options.md#decision-2026-09-27) for why, and
+> [migrating-to-postmarketos.md](migrating-to-postmarketos.md) for the
+> steps we actually followed. This doc is kept as-is since it's still a
+> legitimate path if Mobian's tradeoffs (see os-options.md) fit your
+> situation better than ours.
+
 ## Prerequisite: Tow-Boot
 
 Mobian's install method needs Tow-Boot (a U-Boot-based bootloader)
