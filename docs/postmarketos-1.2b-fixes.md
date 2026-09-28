@@ -75,7 +75,7 @@ sudo reboot
 
 Recovery if boot ever misbehaves: this is *not* a bricking risk. Tow-Boot
 itself is completely untouched by this. Boot back into Tow-Boot's USB
-mass-storage mode (see migrating-to-postmarketos.md) from another
+mass-storage mode (see [setup-from-scratch.md](setup-from-scratch.md)) from another
 machine and restore the `.orig-backup` file over the live one.
 
 **Known cosmetic wart:** the file is now named `sun50i-a64-pinephone-1.2.dtb`

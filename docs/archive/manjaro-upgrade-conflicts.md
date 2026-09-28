@@ -1,3 +1,8 @@
+> **Archived 2026-09-28.** We're off Manjaro now — see
+> [../setup-from-scratch.md](../setup-from-scratch.md) for the current
+> OS (postmarketOS). Kept in case Manjaro ever comes back into the
+> picture, or is useful to someone else running it on a PinePhone.
+
 # Resolving pacman upgrade conflicts on Manjaro ARM
 
 Field notes from actually living through a badly-stale `pacman -Syu` on a

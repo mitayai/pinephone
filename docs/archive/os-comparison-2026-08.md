@@ -1,3 +1,10 @@
+> **Archived 2026-09-28.** This was the comparison that led to the
+> decision (see "Decision" below) — kept for the reasoning and the
+> Mobian/Ubuntu Touch tradeoffs, which are still accurate as of when
+> written. For the actual current setup, see
+> [../setup-from-scratch.md](../setup-from-scratch.md) and
+> [../hardware.md](../hardware.md). Not maintained going forward.
+
 # Going from stock Manjaro ARM to something more current
 
 If you're on the PinePhone's stock Manjaro ARM image and it's gone
@@ -15,7 +22,7 @@ If you like Arch-family package management and Plasma Mobile, staying
 put is fine — the problem was never Manjaro itself, it was letting
 updates lapse for two years. Run `sudo pacman -Syu` regularly (weekly
 is reasonable for a phone you actually rely on), and see
-[resolving-upgrade-conflicts.md](resolving-upgrade-conflicts.md) for
+[manjaro-upgrade-conflicts.md](manjaro-upgrade-conflicts.md) for
 how to handle what comes up when you do.
 
 ## Option 2: move to a different image entirely
@@ -78,7 +85,7 @@ driver to it.
 ## Decision (2026-09-27)
 
 We went with **postmarketOS** (rebranded to **Nura** the same day, see
-[migrating-to-postmarketos.md](migrating-to-postmarketos.md) — genuine
+[setup-from-scratch.md](../setup-from-scratch.md) — genuine
 rebrand, not a hijack). What tipped it, beyond the general tradeoffs
 above:
 
@@ -91,7 +98,7 @@ above:
   concretely true, not just a claim: our exact board revision (Beta
   Edition, 1.2b) has a real device-tree gap for its magnetometer, and it
   was already tracked upstream (`pmaports#1945`) with a working fix
-  available — see [postmarketos-1.2b-fixes.md](postmarketos-1.2b-fixes.md).
+  available — see [postmarketos-1.2b-fixes.md](../postmarketos-1.2b-fixes.md).
   A less-maintained project wouldn't have had that.
 - Ubuntu Touch was re-checked live (not from memory) at decision time —
   still "under heavy development" for the non-Pro PinePhone specifically,

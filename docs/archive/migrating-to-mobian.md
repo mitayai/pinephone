@@ -1,15 +1,17 @@
+> **Archived 2026-09-28.** We ended up choosing postmarketOS instead —
+> see [../setup-from-scratch.md](../setup-from-scratch.md) for our
+> actual current setup, and
+> [os-comparison-2026-08.md](os-comparison-2026-08.md#decision-2026-09-27)
+> for why. Kept here as a legitimate alternative path, not deleted —
+> Mobian's tradeoffs (see the comparison doc) may fit your situation
+> better than ours did. Not maintained going forward; re-verify anything
+> version-specific before following it.
+
 # Migrating a PinePhone from stock Manjaro ARM to Mobian
 
 Verified against the official Debian wiki install page as of August
 2026 — re-check before following this if it's been a while, install
 processes for niche hardware do shift.
-
-> **We ended up choosing postmarketOS instead** — see
-> [os-options.md](os-options.md#decision-2026-09-27) for why, and
-> [migrating-to-postmarketos.md](migrating-to-postmarketos.md) for the
-> steps we actually followed. This doc is kept as-is since it's still a
-> legitimate path if Mobian's tradeoffs (see os-options.md) fit your
-> situation better than ours.
 
 ## Prerequisite: Tow-Boot
 
@@ -86,9 +88,9 @@ something to leave in place even briefly on a device you carry around.
 
 ## After install
 
-Same principle as the [upgrade conflict notes](resolving-upgrade-conflicts.md)
+Same principle as the [upgrade conflict notes](manjaro-upgrade-conflicts.md)
 apply going forward, adjusted for apt instead of pacman — don't let
 this image go stale either. Given Debian Stable's slower patch cadence
 is the real tradeoff of choosing Mobian in the first place (see
-[os-options.md](os-options.md)), staying current here matters more than
+[os-comparison-2026-08.md](os-comparison-2026-08.md)), staying current here matters more than
 it would on a faster-moving distro.

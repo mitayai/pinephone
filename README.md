@@ -1,48 +1,46 @@
 # pinephone
 
 Field notes and small tools for a **PinePhone Beta Edition (motherboard
-rev 1.2b)**, written from actually living with one — not theory.
-Everything here reflects real problems hit and how they actually got
-resolved, not generic advice copied from elsewhere. See
-[docs/hardware.md](docs/hardware.md) for exactly what that hardware
-identity means and why it matters (short version: it has a different
-magnetometer chip than most PinePhone docs assume, and that has
-consequences).
+rev 1.2b)**, written from actually living with one — not theory. This
+repo is kept as a straight line from "blank/unknown phone" to our
+current working state, not a running diary — see `docs/archive/` if you
+want the history (a stale Manjaro install we moved off, the Mobian path
+we considered but didn't take, the full OS comparison).
 
-Originally ran a badly-stale Manjaro ARM (~2 years of accumulated update
-drift). As of 2026-09-27/28, running **postmarketOS** (rebranded to
-**Nura** the same day — see [docs/os-options.md](docs/os-options.md#decision-2026-09-27)
-for why we chose it and why the rename doesn't change anything).
+## Current state
 
-## What's here
+Running **postmarketOS** (rebranded to **Nura** the same week — see
+[docs/setup-from-scratch.md](docs/setup-from-scratch.md) for why the
+rename doesn't change anything), Phosh UI, magnetometer and modem both
+fixed for this hardware revision.
 
-- **[docs/hardware.md](docs/hardware.md)** — what this device actually
-  is: chassis, bootloader, the sensor chip substitution that trips up
-  generic PinePhone advice, camera limitations.
-- **[docs/os-options.md](docs/os-options.md)** — postmarketOS vs Mobian
-  vs Ubuntu Touch vs staying on Manjaro, plus the actual decision we made
-  and why.
-- **[docs/migrating-to-postmarketos.md](docs/migrating-to-postmarketos.md)**
-  — the real steps we followed to move from stock Manjaro to postmarketOS.
-- **[docs/postmarketos-1.2b-fixes.md](docs/postmarketos-1.2b-fixes.md)**
-  — getting the magnetometer and (as a direct consequence of that fix)
-  the cellular modem actually working on a 1.2b unit. Read this before
-  you hit either problem blind.
-- **[docs/migrating-to-mobian.md](docs/migrating-to-mobian.md)** —
-  concrete steps for moving from stock Manjaro to Mobian instead,
-  including the Tow-Boot prerequisite. Kept accurate as an alternative
-  path, even though we went with postmarketOS.
-- **[docs/resolving-upgrade-conflicts.md](docs/resolving-upgrade-conflicts.md)**
-  — how to handle `pacman -Syu` conflicts, `.pacnew` files, and a broken
-  GUI after upgrading a badly-stale Manjaro ARM install. Historical now
-  that we've moved off Manjaro, kept for anyone still on it.
-- **[docs/scripts.md](docs/scripts.md)** — usage and a real warning
-  about `wifi-toggle` (see below).
-- **[scripts/](scripts/)** — `modem-toggle` and `wifi-toggle`, small
-  power-management scripts for the cellular modem and WiFi radio. Still
-  work fine on postmarketOS.
+## Start here
 
-## Quick start
+1. **[docs/hardware.md](docs/hardware.md)** — identify your chassis,
+   bootloader, and exact sensor chips first. This device's hardware
+   revision (Beta Edition, 1.2b) has a specific sensor substitution that
+   the rest of these docs assume you know about.
+2. **[docs/setup-from-scratch.md](docs/setup-from-scratch.md)** — Tow-Boot
+   (check for it, install it if it's not there), flashing postmarketOS,
+   first boot, default login.
+3. **[docs/postmarketos-1.2b-fixes.md](docs/postmarketos-1.2b-fixes.md)**
+   — the stock image boots, but on a 1.2b unit the magnetometer is
+   silently disabled and fixing that breaks the cellular modem in a
+   non-obvious way. Both fixed here, in the order you'll actually hit
+   them.
+4. **[docs/scripts.md](docs/scripts.md)** / **[scripts/](scripts/)** —
+   `modem-toggle` and `wifi-toggle`, small power-management tools for
+   day-to-day use once the phone's set up.
+
+## Quick start (scripts)
+
+These scripts run *on the phone*, so you need a shell there first —
+either a local terminal on the device, or SSH (the more usual way for
+us now; see the SSH setup notes in
+[docs/postmarketos-1.2b-fixes.md](docs/postmarketos-1.2b-fixes.md#ssh-access-notes-systemd-not-openrc)
+if you haven't got that going yet). Once you have a shell on the phone,
+get this repo onto it (`git clone`, or `scp`/`rsync` the `scripts/`
+folder over) and:
 
 ```bash
 mkdir -p ~/bin
@@ -59,6 +57,20 @@ over its own WiFi, disabling WiFi cuts the connection you're using to
 run the command — no remote recovery possible, only a different
 network path or physical access gets you back in. This happened to us;
 it's not a hypothetical.
+
+## Archive
+
+**[docs/archive/](docs/archive/)** — superseded content, kept for
+reference rather than deleted:
+- `os-comparison-2026-08.md` — the full postmarketOS vs Mobian vs Ubuntu
+  Touch vs staying-on-Manjaro comparison, and the dated decision log.
+- `migrating-to-mobian.md` — the Mobian path, if that fits your situation
+  better than ours did.
+- `manjaro-upgrade-conflicts.md` — recovering a badly-stale Manjaro ARM
+  install, from before we moved off it entirely.
+
+None of these are maintained going forward; re-verify anything
+version-specific before following them.
 
 ## Contributing
 
